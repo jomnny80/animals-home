@@ -4,3 +4,10 @@
 #  web:
 #    resources:
 #      static-locations: [classpath:/static/]
+
+# Rest style
+spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
