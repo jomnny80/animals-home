@@ -29,4 +29,7 @@ public class HelloController {
     public String deleteUser(){
         return "Delete user";
     }
+
+    // change _method to custom param
+    // to see WebConfig hiddenHttpMethodFilter();
 }

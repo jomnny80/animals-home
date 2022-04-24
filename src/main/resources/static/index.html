@@ -19,12 +19,14 @@
     <form action="/user" method="post">
         <!-- form use rest style should set a "_method" param and use "post" method, and yml need to setting rest style open -->
         <!-- postman shouldn't set yml file -->
-        <input name="_method" type="hidden" value="PUT" />
+<!--        <input name="_method" type="hidden" value="PUT" />-->
+        <input name="_m" type="hidden" value="PUT" />
         <input value="REST-PUT" type="submit" />
     </form>
 
     <form action="/user" method="post">
-        <input name="_method" type="hidden" value="DELETE" />
+<!--        <input name="_method" type="hidden" value="DELETE" />-->
+        <input name="_m" type="hidden" value="DELETE" />
         <input value="REST-DELETE" type="submit" />
     </form>
 </body>
