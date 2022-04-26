@@ -29,5 +29,23 @@
         <input name="_m" type="hidden" value="DELETE" />
         <input value="REST-DELETE" type="submit" />
     </form>
+
+    <ul>
+        <li><a href="/car/2/owner/lin">@PathVariable 路徑變量</a></li>
+        <li><a href="/header">@RequestHeader 請求頭</a></li>
+        <li><a href="/param?age=18&interesting=basketball&interesting=baseball">@RequestParam 請求參數</a></li>
+        <li><a href="/cookie">@CookieValue Cookie值</a></li>
+        <li>@RequestBody Request Body 下方表單</li>
+        <li>@RequestAttribute Request屬性</li>
+        <li>@MatrixVariable 矩陣變量</li>
+    </ul>
+
+    <form action="/request-body" method="post">
+        <h6>Test request body</h6><br>
+        <span>User name:</span><input name="userName" /><br>
+        <span>Email:</span><input name="email" /><br>
+        <input type="submit" value="Submit">
+    </form>
+
 </body>
 </html>
