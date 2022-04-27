@@ -35,7 +35,7 @@
         <li><a href="/header">@RequestHeader 請求頭</a></li>
         <li><a href="/param?age=18&interesting=basketball&interesting=baseball">@RequestParam 請求參數</a></li>
         <li><a href="/cookie">@CookieValue Cookie值</a></li>
-        <li>@RequestBody Request Body 下方表單</li>
+        <li>@RequestBody Request Body 下方表單 43 line</li>
         <li>@RequestAttribute Request屬性</li>
         <li>@MatrixVariable 矩陣變量</li>
     </ul>
@@ -46,6 +46,25 @@
         <span>Email:</span><input name="email" /><br>
         <input type="submit" value="Submit">
     </form>
+
+    <br>
+
+    <span>/cars/{path}?aaa=bbb&ccc=ddd => queryString 查詢字符串 => @RequestParam</span><br>
+    <span>/cars/{path;low=34;brand=byd,audi,yd} => 矩陣變量 => @MatrixVariable</span><br>
+    <span>
+        頁面開發時，如果 cookie 被禁用了，該如何調用 session 的內容？
+
+        cookie 調用 session 的原理：
+            session,set(a, b) ---> 產生 jsessionId ---> jsessionId 會存在 cookie 中 ---> 每次 request 時攜帶。
+
+        解決辦法：
+            url 重寫：
+                /abc;jsessionId=xxxx ---> 把 cookie 的值使用矩陣變量的方式進行傳遞。
+    </span><br>
+
+    <a href="/matrix/sell;low=34;brand=byd,audi,yd">@MatrixVariable 矩陣變量</a><br>
+    <a href="/matrix/sell;low=34;brand=byd,brand=audi,brand=yd">@MatrixVariable 矩陣變量</a><br>
+    <a href="/boss/1;age=20/2;age=10">@MatrixVariable 矩陣變量 /boss/{bossId}/{empId}</a>
 
 </body>
 </html>
