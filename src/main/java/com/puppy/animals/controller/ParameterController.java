@@ -1,5 +1,6 @@
 package com.puppy.animals.controller;
 
+import com.puppy.animals.bean.Person;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -10,12 +11,22 @@ import java.util.Map;
 @RestController
 public class ParameterController {
 
+    /**
+     * 數據綁定，頁面提交的請求數據(GET, POST)，都可以和對象屬性進行綁定
+     * @param person
+     * @return
+     */
+    @PostMapping("/save-user")
+    public Person saveUser(Person person){
+        return person;
+    }
+
     // car/2/owner/lin
     @GetMapping("/car/{id}/owner/{name}")
     public Map<String, Object> getPathVariable(
-        @PathVariable("id") Long id,
-        @PathVariable("name") String name,
-        @PathVariable Map<String, String> pv
+            @PathVariable("id") Long id,
+            @PathVariable("name") String name,
+            @PathVariable Map<String, String> pv
     ){
         Map<String, Object> map = new HashMap<>();
         map.put("id", id);
@@ -26,8 +37,8 @@ public class ParameterController {
 
     @GetMapping("/header")
     public Map<String, Object> getRequestHeader(
-        @RequestHeader("User-Agent") String userAgent,
-        @RequestHeader Map<String, String> headers
+            @RequestHeader("User-Agent") String userAgent,
+            @RequestHeader Map<String, String> headers
     ){
         Map<String, Object> map = new HashMap<>();
         map.put("userAgent", userAgent);
@@ -37,9 +48,9 @@ public class ParameterController {
 
     @GetMapping("/param")
     public Map<String, Object> getRequestParam(
-        @RequestParam("age") Integer age,
-        @RequestParam("interesting") List<String> interesting,
-        @RequestParam Map<String, String> params
+            @RequestParam("age") Integer age,
+            @RequestParam("interesting") List<String> interesting,
+            @RequestParam Map<String, String> params
     ){
         Map<String, Object> map = new HashMap<>();
         map.put("age", age);
@@ -50,8 +61,8 @@ public class ParameterController {
 
     @GetMapping("/cookie")
     public Map<String, Object> getCookieValue(
-        @CookieValue("_ga") String _ga,
-        @CookieValue("_ga") Cookie cookie
+            @CookieValue("_ga") String _ga,
+            @CookieValue("_ga") Cookie cookie
     ){
         Map<String, Object> map = new HashMap<>();
         map.put("_ga", _ga);
@@ -61,7 +72,7 @@ public class ParameterController {
 
     @PostMapping("/request-body")
     public Map<String, Object> getRequestBody(
-        @RequestBody String content
+            @RequestBody String content
     ){
         Map<String, Object> map = new HashMap<>();
         map.put("content", content);

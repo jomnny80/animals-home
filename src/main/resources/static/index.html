@@ -5,53 +5,53 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Welcome!</h1>
+<h1>Welcome!</h1>
 
-    <h2>測試rest風格</h2>
-    <form action="/user" method="get">
-        <input value="REST-GET" type="submit" />
-    </form>
+<h2>測試rest風格</h2>
+<form action="/user" method="get">
+    <input value="REST-GET" type="submit" />
+</form>
 
-    <form action="/user" method="post">
-        <input value="REST-POST" type="submit" />
-    </form>
+<form action="/user" method="post">
+    <input value="REST-POST" type="submit" />
+</form>
 
-    <form action="/user" method="post">
-        <!-- form use rest style should set a "_method" param and use "post" method, and yml need to setting rest style open -->
-        <!-- postman shouldn't set yml file -->
-<!--        <input name="_method" type="hidden" value="PUT" />-->
-        <input name="_m" type="hidden" value="PUT" />
-        <input value="REST-PUT" type="submit" />
-    </form>
+<form action="/user" method="post">
+    <!-- form use rest style should set a "_method" param and use "post" method, and yml need to setting rest style open -->
+    <!-- postman shouldn't set yml file -->
+    <!--        <input name="_method" type="hidden" value="PUT" />-->
+    <input name="_m" type="hidden" value="PUT" />
+    <input value="REST-PUT" type="submit" />
+</form>
 
-    <form action="/user" method="post">
-<!--        <input name="_method" type="hidden" value="DELETE" />-->
-        <input name="_m" type="hidden" value="DELETE" />
-        <input value="REST-DELETE" type="submit" />
-    </form>
+<form action="/user" method="post">
+    <!--        <input name="_method" type="hidden" value="DELETE" />-->
+    <input name="_m" type="hidden" value="DELETE" />
+    <input value="REST-DELETE" type="submit" />
+</form>
 
-    <ul>
-        <li><a href="/car/2/owner/lin">@PathVariable 路徑變量</a></li>
-        <li><a href="/header">@RequestHeader 請求頭</a></li>
-        <li><a href="/param?age=18&interesting=basketball&interesting=baseball">@RequestParam 請求參數</a></li>
-        <li><a href="/cookie">@CookieValue Cookie值</a></li>
-        <li>@RequestBody Request Body 下方表單 43 line</li>
-        <li>@RequestAttribute Request屬性</li>
-        <li>@MatrixVariable 矩陣變量</li>
-    </ul>
+<ul>
+    <li><a href="/car/2/owner/lin">@PathVariable 路徑變量</a></li>
+    <li><a href="/header">@RequestHeader 請求頭</a></li>
+    <li><a href="/param?age=18&interesting=basketball&interesting=baseball">@RequestParam 請求參數</a></li>
+    <li><a href="/cookie">@CookieValue Cookie值</a></li>
+    <li>@RequestBody Request Body 下方表單 43 line</li>
+    <li>@RequestAttribute Request屬性</li>
+    <li>@MatrixVariable 矩陣變量</li>
+</ul>
 
-    <form action="/request-body" method="post">
-        <h6>Test request body</h6><br>
-        <span>User name:</span><input name="userName" /><br>
-        <span>Email:</span><input name="email" /><br>
-        <input type="submit" value="Submit">
-    </form>
+<form action="/request-body" method="post">
+    <h6>Test request body</h6><br>
+    <span>User name:</span><input name="userName" /><br>
+    <span>Email:</span><input name="email" /><br>
+    <input type="submit" value="Submit">
+</form>
 
-    <br>
+<br>
 
-    <span>/cars/{path}?aaa=bbb&ccc=ddd => queryString 查詢字符串 => @RequestParam</span><br>
-    <span>/cars/{path;low=34;brand=byd,audi,yd} => 矩陣變量 => @MatrixVariable</span><br>
-    <span>
+<span>/cars/{path}?aaa=bbb&ccc=ddd => queryString 查詢字符串 => @RequestParam</span><br>
+<span>/cars/{path;low=34;brand=byd,audi,yd} => 矩陣變量 => @MatrixVariable</span><br>
+<span>
         頁面開發時，如果 cookie 被禁用了，該如何調用 session 的內容？
 
         cookie 調用 session 的原理：
@@ -60,11 +60,32 @@
         解決辦法：
             url 重寫：
                 /abc;jsessionId=xxxx ---> 把 cookie 的值使用矩陣變量的方式進行傳遞。
-    </span><br>
+</span><br>
 
-    <a href="/matrix/sell;low=34;brand=byd,audi,yd">@MatrixVariable 矩陣變量</a><br>
-    <a href="/matrix/sell;low=34;brand=byd,brand=audi,brand=yd">@MatrixVariable 矩陣變量</a><br>
-    <a href="/boss/1;age=20/2;age=10">@MatrixVariable 矩陣變量 /boss/{bossId}/{empId}</a>
+<!--
+    1. 矩陣變量需要在 SpringBoot 中手動開啟
+    2. 根據 RFC3986 的規範，矩陣變量應當綁定在路徑變量中
+    3. 若是有多個矩陣變量，應當使用英文符號 ';' 進行分隔
+    4. 若是一個矩陣變量有多個值，應當使用英文符號 ',' 進行分隔，或是命名多個重複的 'key' 即可
+    5. 如： /car/sell;low=34;brand=byd,audi,yd
+-->
+<a href="/matrix/sell;low=34;brand=byd,audi,yd">@MatrixVariable 矩陣變量</a><br>
+<a href="/matrix/sell;low=34;brand=byd,brand=audi,brand=yd">@MatrixVariable 矩陣變量</a><br>
+<a href="/boss/1;age=20/2;age=10">@MatrixVariable 矩陣變量 /boss/{bossId}/{empId}</a><br>
+
+<br>
+<h2>測試原生變量</h2>
+<br>
+<p>測試複雜類型:</p>
+<p>測試封裝POJO:</p>
+<form action="/save-user" method="post">
+    <span>姓名：<input name="userName" /></span><br>
+    <span>年齡：<input name="age" /></span><br>
+    <span>生日：<input name="birth" /></span><br>
+    <span>寵物姓名：<input name="pet.name" /></span><br>
+    <span>寵物年齡：<input name="pet.age" /></span><br>
+    <input type="submit" value="submit"><br>
+</form>
 
 </body>
 </html>
