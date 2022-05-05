@@ -11,3 +11,8 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
+    contentnegotiation:
+      # 開啟 favor-parameter 請求參數內容協商模式後，於 url 上帶上 format 參數，可改變 spring boot 回傳的資料類型
+      # http://localhost:8080/test/person?format=json
+      # http://localhost:8080/test/person?format=xml
+      favor-parameter: true
