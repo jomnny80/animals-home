@@ -19,6 +19,19 @@ public class ResponseTestController {
         return null;
     }
 
+    /**
+     * 1. 瀏覽器請求直接返回 xml                        [application/xml] --> jacksonXmlConverter
+     * 2. 如果是 ajax 請求，返回 json                   [application/json] --> jacksonJsonConverter
+     * 3. 如果是 app 發請求，返回自定義協議數據            [application/xxx] --> xxxConverter
+     *      屬性值1;屬性值2;
+     *
+     * Step:
+     * 1. 添加自定義的 MessageConverter 進系統底層
+     * 2. 系統底層就會統計出所有 MessageConverter 能操作哪些類型
+     * 3. 客戶端內容協商 [客戶端要：xxx 類型數據 ---> 服務器給： xxx 類型數據]
+     *
+     * @return
+     */
     @ResponseBody // 利用返回值處理器裡面的消息轉換器進行處理
     @GetMapping("/test/person")
     public Person getPerson(){
