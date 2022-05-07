@@ -16,3 +16,7 @@ spring:
       # http://localhost:8080/test/person?format=json
       # http://localhost:8080/test/person?format=xml
       favor-parameter: true
+# http://localhost:8080/world/...
+#server:
+#  servlet:
+#    context-path: /world
